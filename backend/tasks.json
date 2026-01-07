@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "title": "Создать Vue-компонент",
+    "description": "Разработать компонент TaskItem для отображения задач",
+    "completed": false,
+    "priority": "high",
+    "category": "development",
+    "important": true,
+    "created_at": "2024-01-15T10:00:00"
+  },
+  {
+    "id": 2,
+    "title": "Настроить маршрутизацию",
+    "description": "Добавить Vue Router и настроить маршруты",
+    "completed": true,
+    "priority": "medium",
+    "category": "development",
+    "important": false,
+    "created_at": "2024-01-14T15:30:00"
+  },
+  {
+    "id": 3,
+    "title": "Изучить Docker",
+    "description": "Освоить основы контейнеризации приложений",
+    "completed": false,
+    "priority": "low",
+    "category": "personal",
+    "important": false,
+    "created_at": "2024-01-13T09:15:00"
+  }
+]
+

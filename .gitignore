@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv
+# tasks.json - оставляем начальную версию в репозитории для примера
+# но можно добавить сюда, если не хотите отслеживать изменения
+# tasks.json
+tasks.db
+
