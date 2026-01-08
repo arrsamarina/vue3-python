@@ -560,7 +560,7 @@ https://github.com/arrsamarina/vue3-python
 └── README.md            # Документация проекта
 ```
 
-## 🛠️ Технологии
+## Технологии
 
 ### Frontend:
 - Vue 3 (Composition API)
