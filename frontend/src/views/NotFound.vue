@@ -6,7 +6,7 @@
     
     <template #default>
       <div class="not-found-content">
-        <div class="error-icon">🔍</div>
+        <div class="error-icon">404</div>
         <p class="error-message">
           К сожалению, запрашиваемая страница не существует.
         </p>
@@ -42,18 +42,20 @@ export default {
 .error-icon {
   font-size: 80px;
   margin-bottom: 20px;
+  font-weight: bold;
+  color: #e6edf3;
 }
 
 .error-message {
   font-size: 24px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #e6edf3;
   margin-bottom: 15px;
 }
 
 .error-description {
   font-size: 16px;
-  color: #666;
+  color: #8b949e;
   margin-bottom: 30px;
 }
 

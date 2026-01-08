@@ -1,33 +1,32 @@
 [
   {
-    "id": 1,
-    "title": "Создать Vue-компонент",
-    "description": "Разработать компонент TaskItem для отображения задач",
-    "completed": false,
-    "priority": "high",
-    "category": "development",
-    "important": true,
-    "created_at": "2024-01-15T10:00:00"
-  },
-  {
     "id": 2,
-    "title": "Настроить маршрутизацию",
-    "description": "Добавить Vue Router и настроить маршруты",
+    "title": "Настроить маршрутизацию в приложении",
+    "description": "Реализовать навигацию между страницами с помощью Vue Router",
     "completed": true,
     "priority": "medium",
     "category": "development",
     "important": false,
-    "created_at": "2024-01-14T15:30:00"
+    "created_at": "2025-12-20T15:30:00"
   },
   {
     "id": 3,
-    "title": "Изучить Docker",
-    "description": "Освоить основы контейнеризации приложений",
+    "title": "Изучить Docker и контейнеризацию",
+    "description": "Познакомиться с технологией Docker и научиться создавать контейнеры",
     "completed": false,
     "priority": "low",
     "category": "personal",
     "important": false,
-    "created_at": "2024-01-13T09:15:00"
+    "created_at": "2025-12-21T09:15:00"
+  },
+  {
+    "id": 4,
+    "title": "выспаться",
+    "description": "какой-то кошмар со сном, нужно это исправлять",
+    "priority": "high",
+    "category": "personal",
+    "important": true,
+    "completed": false,
+    "created_at": "2026-01-07T06:31:54.859677"
   }
 ]
-

@@ -1,27 +1,27 @@
-# Этап сборки
+# этап сборки
 FROM node:18-alpine as build
 
 WORKDIR /app
 
-# Копируем package.json и package-lock.json
+# копирование package файлов для установки зависимостей
 COPY package*.json ./
 
-# Устанавливаем зависимости
+# установка зависимостей
 RUN npm install
 
-# Копируем исходный код
+# копирование исходного кода
 COPY . .
 
-# Собираем приложение
+# сборка приложения
 RUN npm run build
 
-# Этап продакшн
+# этап продакшн
 FROM nginx:alpine
 
-# Копируем собранное приложение
+# копирование собранного приложения в nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Копируем конфигурацию nginx
+# копирование конфигурации nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

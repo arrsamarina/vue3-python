@@ -2,12 +2,11 @@
   <header class="app-header">
     <div class="header-content">
       <router-link to="/" class="logo">
-        <h1>📋 Task Manager</h1>
+        <h1>Task Manager</h1>
       </router-link>
       <nav class="nav">
         <router-link to="/" class="nav-link">Главная</router-link>
         <router-link to="/tasks" class="nav-link">Задачи</router-link>
-        <router-link to="/tasks/new" class="nav-link btn btn-primary btn-small">+ Новая задача</router-link>
       </nav>
     </div>
   </header>
@@ -21,10 +20,32 @@ export default {
 
 <style scoped>
 .app-header {
-  background-color: #2c3e50;
-  color: white;
-  padding: 15px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #0a0a0a;
+  color: #e6edf3;
+  padding: 16px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3);
+  border-bottom: 1px solid #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 12px 0;
+  }
+  
+  .nav {
+    gap: 12px;
+  }
+  
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
 }
 
 .header-content {
@@ -53,7 +74,7 @@ export default {
 }
 
 .nav-link {
-  color: white;
+  color: #e6edf3;
   text-decoration: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -61,11 +82,13 @@ export default {
 }
 
 .nav-link:hover {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255,255,255,0.08);
 }
 
 .nav-link.router-link-active {
-  background-color: #42b983;
+  background-color: #86efac;
+  color: #0f172a;
 }
+
 </style>
 

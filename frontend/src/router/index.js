@@ -5,6 +5,7 @@ import TaskNew from '../views/TaskNew.vue'
 import TaskEdit from '../views/TaskEdit.vue'
 import NotFound from '../views/NotFound.vue'
 
+// определение маршрутов приложения
 const routes = [
   {
     path: '/',
@@ -28,12 +29,14 @@ const routes = [
     props: true
   },
   {
+    // catch-all маршрут для 404 страницы
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: NotFound
   }
 ]
 
+// создание роутера с history mode
 const router = createRouter({
   history: createWebHistory(),
   routes

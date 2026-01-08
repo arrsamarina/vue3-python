@@ -1,5 +1,4 @@
-// Используем относительный путь для работы через nginx proxy в Docker
-// В dev режиме vite.config.js настроен proxy на localhost:8000
+// базовый url api (используется nginx proxy в docker или переменная окружения)
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
 
 export const taskService = {

@@ -1,7 +1,7 @@
 <template>
   <LayoutCard>
     <template #header>
-      <h2>{{ isEdit ? 'Редактирование задачи' : 'Создание новой задачи' }}</h2>
+      <h2>{{ isEdit ? 'Редактирование задачи' : 'Новая задача' }}</h2>
     </template>
     
     <template #default>
@@ -40,6 +40,10 @@
             v-model="formData.priority"
             required
             class="form-select"
+            :class="{ 'select-open': prioritySelectOpen }"
+            @focus="prioritySelectOpen = true"
+            @blur="prioritySelectOpen = false"
+            @change="prioritySelectOpen = false"
           >
             <option value="low">Низкий</option>
             <option value="medium">Средний</option>
@@ -125,6 +129,7 @@ export default {
     const loading = ref(false)
     const isEdit = ref(!!props.taskId || !!route.params.id)
     const taskId = ref(props.taskId || route.params.id)
+    const prioritySelectOpen = ref(false)
 
     const formData = reactive({
       title: '',
@@ -139,7 +144,7 @@ export default {
       description: ''
     })
 
-    // Watch для валидации
+    // валидация заголовка при вводе
     watch(() => formData.title, (newVal) => {
       if (newVal.length < 3) {
         errors.title = 'Заголовок должен содержать минимум 3 символа'
@@ -148,6 +153,7 @@ export default {
       }
     })
 
+    // валидация описания при вводе
     watch(() => formData.description, (newVal) => {
       if (newVal.length < 10) {
         errors.description = 'Описание должно содержать минимум 10 символов'
@@ -156,12 +162,14 @@ export default {
       }
     })
 
+    // загрузка задачи для редактирования
     const loadTask = async () => {
       if (!isEdit.value) return
       
       try {
         loading.value = true
         const task = await taskService.getTaskById(taskId.value)
+        // заполнение формы данными задачи
         Object.assign(formData, {
           title: task.title,
           description: task.description,
@@ -178,6 +186,7 @@ export default {
       }
     }
 
+    // валидация формы перед отправкой
     const validateForm = () => {
       errors.title = ''
       errors.description = ''
@@ -195,6 +204,7 @@ export default {
       return true
     }
 
+    // обработка отправки формы (создание или обновление задачи)
     const handleSubmit = async () => {
       if (!validateForm()) {
         return
@@ -229,6 +239,7 @@ export default {
       errors,
       loading,
       isEdit,
+      prioritySelectOpen,
       handleSubmit
     }
   }
@@ -241,19 +252,83 @@ export default {
 }
 
 .form-input,
-.form-textarea,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #1a1a1a;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0f0f0f;
+  color: #e6edf3;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .form-select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 12px 50px 12px 16px;
+  border: 2px solid #1a1a1a;
+  border-radius: 10px;
   font-size: 14px;
-  font-family: inherit;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0f0f0f;
+  color: #e6edf3;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px;
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #86efac;
+  background-color: #121212;
+  box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.1), 0 0 20px rgba(134, 239, 172, 0.2);
+  transform: translateY(-1px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%2386efac' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+.form-select.select-open {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 12 12'%3E%3Cpath fill='%2386efac' d='M6 3L1 8h10z'/%3E%3C/svg%3E");
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #6b7280;
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #86efac;
+  background-color: #121212;
+  box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.1), 0 0 20px rgba(134, 239, 172, 0.2);
+  transform: translateY(-1px);
+}
+
+.form-select:focus,
+.form-select.select-open {
+  outline: none;
+  border-color: #86efac;
+  background-color: #121212;
+  box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.1), 0 0 20px rgba(134, 239, 172, 0.2);
+  transform: translateY(-1px);
+}
+
+.form-input:focus::placeholder,
+.form-textarea:focus::placeholder {
+  opacity: 0.5;
 }
 
 .form-input.error,
 .form-textarea.error {
-  border-color: #e74c3c;
+  border-color: #fca5a5;
+  box-shadow: 0 0 0 3px rgba(252, 165, 165, 0.1), 0 0 20px rgba(252, 165, 165, 0.2);
 }
 
 .form-textarea {
@@ -269,6 +344,18 @@ export default {
 
 .form-actions .btn {
   flex: 1;
+}
+
+/* выравнивание radio и checkbox групп с остальными полями */
+.task-form :deep(.radio-group) {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.task-form :deep(.checkbox-group) {
+  margin-top: 0;
+  padding: 0;
 }
 </style>
 

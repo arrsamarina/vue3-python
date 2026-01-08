@@ -2,9 +2,6 @@
   <div class="tasks-page">
     <div class="page-header">
       <h1>Список задач</h1>
-      <router-link to="/tasks/new" class="btn btn-primary">
-        + Создать задачу
-      </router-link>
     </div>
     
     <TaskList @task-updated="handleTaskUpdated" />
@@ -22,7 +19,6 @@ export default {
   },
   setup() {
     const handleTaskUpdated = () => {
-      // Можно добавить логику обновления, если нужно
       console.log('Задача обновлена')
     }
 
@@ -42,21 +38,48 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 20px;
+  animation: fadeIn 0.4s ease-out;
 }
 
 .page-header h1 {
-  font-size: 32px;
-  color: #2c3e50;
+  font-size: 2.5rem;
+  color: #e6edf3;
   margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page-header .btn-primary {
+  background-color: transparent;
+  border: 2px solid #86efac;
+  color: #e6edf3;
+}
+
+.page-header .btn-primary:hover {
+  background-color: transparent;
+  border-color: #a7f3d0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(134, 239, 172, 0.3);
 }
 
 @media (max-width: 768px) {
   .page-header {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+  
+  .page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .page-header .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>
